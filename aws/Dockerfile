@@ -5,4 +5,4 @@ RUN apk add --no-cache --virtual=build-dependencies build-base python-dev py-pip
     && pip install awscli \
     && apk del build-dependencies
 
-ENTRYPOINT ["/usr/bin/aws"]
+ENTRYPOINT [ "/usr/bin/aws" ]
