@@ -1,9 +1,8 @@
 This docker image includes
 
-[dig](http://ftp.isc.org/isc/bind9/cur/9.10/doc/arm/man.dig.html)
-– Copyright © 2004-2013 by Internet Systems Consortium, Inc. (“ISC”),
-Copyright © 1995-2003 by Internet Software Consortium, licensed under
-[ISC License](https://www.isc.org/downloads/software-support-policy/isc-license/)
+[drill](https://www.nlnetlabs.nl/projects/ldns/)
+– Copyright (c) 2005,2006, NLnetLabs
+[BSD 3-clause](http://git.nlnetlabs.nl/ldns/plain/LICENSE)
 
 [Alpine Linux](http://www.alpinelinux.org/)
 – maintained by the Alpine Linux development team.
