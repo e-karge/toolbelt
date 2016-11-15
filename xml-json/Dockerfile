@@ -1,5 +1,5 @@
 FROM ekarge/toolbelt:nodejs
 
-RUN npm install xml-json -g
+RUN apk --no-cache add nodejs && npm install xml-json -g
 
 ENTRYPOINT [ "/usr/bin/xml-json" ]
