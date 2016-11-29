@@ -5,7 +5,7 @@ tinyproxy
 Docker image for [tinyproxy](https://tinyproxy.github.io/). To use run
 
 ```bash
-docker run --rm -ti ekarge/toolbelt:tinyproxy
+docker run --rm -ti toolbelt/tinyproxy
 ```
 
 See [here](https://linux.die.net/man/8/tinyproxy)
