@@ -1,7 +1,6 @@
 FROM alpine
 
-RUN apk --no-cache upgrade \
-  && apk --no-cache add syslog-ng syslog-ng-json
+RUN apk --no-cache add syslog-ng syslog-ng-json
 COPY syslog-ng.conf /etc/syslog-ng/
 
 VOLUME /run/syslog
