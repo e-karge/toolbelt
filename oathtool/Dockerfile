@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
- && apk add --no-cache oath-toolkit-oathtool
+RUN echo @edge http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+ && apk add --no-cache oath-toolkit-oathtool@edge
 
 ENTRYPOINT [ "/usr/bin/oathtool" ]
