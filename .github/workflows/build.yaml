@@ -1,8 +1,11 @@
 name: build
 on:
-  schedule: [{ cron: "42 13 23 * *" }]
+  schedule: [ cron: "42 13 23 * *" ]
   push: { branches: [ main ] }
   workflow_dispatch:
+
+env:
+  REGISTRY: docker.io
 
 jobs:
   build:
@@ -17,6 +20,8 @@ jobs:
         <<<"$REGISTRY_SECRET" buildah login --username="$REGISTRY_USERNAME" --password-stdin "$REGISTRY"
         make push
       env:
-        REGISTRY: docker.io
         REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
         REGISTRY_SECRET: ${{ secrets.DOCKER_HUB_SECRET }}
+    - name: buildah logout
+      if: ${{ always() }}
+      run: buildah logout "$REGISTRY"
