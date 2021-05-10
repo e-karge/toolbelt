@@ -1,0 +1,13 @@
+name: build
+on:
+  schedule: [{ cron: "42 13 23 * *" }]
+  push: { branches: [ main ] }
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: buildah version
+      run: buildah version
