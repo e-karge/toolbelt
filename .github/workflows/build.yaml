@@ -7,9 +7,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: build
     steps:
     - uses: actions/checkout@v2
     - name: amqp
       run: |
         cd amqp
         make
+        <<<"$REGISTRY_SECRET" buildah login --username="$REGISTRY_USERNAME" --password-stdin "$REGISTRY"
+        make push
+      env:
+        REGISTRY: docker.io
+        REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        REGISTRY_SECRET: ${{ secrets.DOCKER_HUB_SECRET }}
