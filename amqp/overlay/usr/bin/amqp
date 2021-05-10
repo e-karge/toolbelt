@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$1" in
+  amqp-consume|consume|amqp-declare-queue|declare-queue|amqp-delete-queue|delete-queue|amqp-get|get|amqp-publish|publish)
+    exec "amqp-${1#amqp-}" "${@:2}"
+  ;;
+  *)
+    ls /usr/bin/amqp-* | sed 's|^/usr/bin/amqp-|amqp |'
+  ;;
+esac

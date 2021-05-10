@@ -9,7 +9,7 @@ command-line utils. To use run
 docker run --rm -ti toolbelt/amqp <command>
 ```
 
-where `<command>` can must one of `consume`, `declare-queue`, `delete-queue`,
+where `<command>` should be one of `consume`, `declare-queue`, `delete-queue`,
 `get` or `publish`. For invocation details run
 
 ```bash

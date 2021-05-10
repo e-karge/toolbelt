@@ -9,5 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: buildah version
-      run: buildah version
+    - name: amqp
+      run: |
+        cd amqp
+        make
