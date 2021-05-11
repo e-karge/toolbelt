@@ -24,13 +24,12 @@ jobs:
         secret: ${{ secrets.DOCKER_HUB_SECRET }}
     - name: amqp
       uses: ./.github/actions/build
-      with:
-        image: amqp
-        timestamp: ${{ env.BUILD_DATE }}
+      with: { image: amqp, timestamp: ${{ env.BUILD_DATE }} }
+    - name: aws
+      uses: ./.github/actions/build
+      with: { image: aws, timestamp: ${{ env.BUILD_DATE }} }
     - name: buildah
       uses: ./.github/actions/build
-      with:
-        image: buildah
-        timestamp: ${{ env.BUILD_DATE }}
+      with: { image: buildah, timestamp: ${{ env.BUILD_DATE }} }
     - name: docker logout
       uses: ./.github/actions/docker-logout
