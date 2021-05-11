@@ -36,4 +36,5 @@ jobs:
         image: buildah
         timestamp: ${{ env.BUILD_DATE }}
     - name: docker logout
+      if: ${{ always() }}
       uses: ./.github/actions/docker-logout
