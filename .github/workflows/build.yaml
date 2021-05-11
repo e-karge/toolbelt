@@ -13,11 +13,14 @@ jobs:
     environment: build
     steps:
     - uses: actions/checkout@v2
+    - name: timestamp
+      run: echo "BUILD_DATE=$(date --iso-8601)" >> $GITHUB_ENV
     - name: amqp
       run: |
         cd amqp
         make
         <<<"$REGISTRY_SECRET" buildah login --username="$REGISTRY_USERNAME" --password-stdin "$REGISTRY"
+        make push tag="$BUILD_DATE"
         make push
       env:
         REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}

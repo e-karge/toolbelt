@@ -9,7 +9,7 @@ build-default: clean
 	buildah copy $(image) overlay/ /
 
 commit:
-	buildah commit --rm $(image) $(image):$(tag)
+	buildah commit --rm $(image) $(image):latest
 
 push:
 	buildah push --format v2s2 $(image):latest "$(REGISTRY)/$(image):$(tag)"
