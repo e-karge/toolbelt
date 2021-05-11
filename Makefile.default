@@ -7,7 +7,7 @@ build-default: clean
 	buildah --name $(image) from --pull-always docker.io/alpine
 	buildah config --created-by 'buildah' $(image)
 	buildah run $(image) /bin/sh <install.sh
-	buildah copy $(image) overlay/ /
+	if [ -d overlay ]; then buildah copy $(image) overlay/ /; fi
 
 commit:
 	buildah commit --rm $(image) $(image):latest
