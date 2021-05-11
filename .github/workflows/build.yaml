@@ -15,17 +15,17 @@ jobs:
     - uses: actions/checkout@v2
     - name: timestamp
       run: echo "BUILD_DATE=$(date --iso-8601)" >> $GITHUB_ENV
-    - name: buildah login
-      env:
-        REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-        REGISTRY_SECRET: ${{ secrets.DOCKER_HUB_SECRET }}
-      run: <<<"$REGISTRY_SECRET" buildah login --username="$REGISTRY_USERNAME" --password-stdin "$REGISTRY"
+    - name: ls-R
+      run: ls -AR
+    - name: docker login
+      uses: ./.github/actions/docker-login
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        secret: ${{ secrets.DOCKER_HUB_SECRET }}
     - name: amqp
-      run: |
-        cd amqp
-        make
-        make push tag="$BUILD_DATE"
-        make push
-    - name: buildah logout
-      if: ${{ always() }}
-      run: buildah logout "$REGISTRY"
+      uses: ./.github/actions/build
+      with:
+        image: amqp
+        timestamp: ${{ env.BUILD_DATE }}
+    - name: docker logout
+      uses: ./.github/actions/docker-logout

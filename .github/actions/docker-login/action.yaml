@@ -1,0 +1,14 @@
+name: build
+inputs:
+  username: { required: true }
+  secret: { required: true }
+
+runs:
+  using: composite
+  steps:
+  - name: buildah login
+    shell: bash
+    env:
+      REGISTRY_USERNAME:  ${{ inputs.username }}
+      REGISTRY_SECRET:  ${{ inputs.secret }}
+    run: <<<"$REGISTRY_SECRET" buildah login --username="$REGISTRY_USERNAME" --password-stdin docker.io

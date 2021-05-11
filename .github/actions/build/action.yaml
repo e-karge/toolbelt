@@ -1,0 +1,19 @@
+name: build
+inputs:
+  image: { required: true }
+  timestamp: { required: true }
+
+runs:
+  using: composite
+  steps:
+  - name: ${{ inputs.image }}
+    shell: bash
+    env:
+      _IMAGE: ${{ inputs.image }}
+      _BUILD_DATE: ${{ inputs.timestamp }}
+      REGISTRY: docker.io
+    run: |
+      cd "${_IMAGE}"
+      make 
+      make push tag="$_BUILD_DATE"
+      make push

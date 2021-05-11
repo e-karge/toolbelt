@@ -1,0 +1,13 @@
+name: build
+inputs:
+  image: { required: true }
+  timestamp: { required: true }
+  registry-username: { required: true }
+  registry-secret: { required: true }
+
+runs:
+  using: composite
+  steps:
+  - name: buildah logout
+    shell: bash
+    run: buildah logout docker.io
