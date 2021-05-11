@@ -45,6 +45,11 @@ jobs:
       with:
         image: dig
         timestamp: ${{ env.BUILD_DATE }}
+    - name: drill
+      uses: ./.github/actions/build
+      with:
+        image: drill
+        timestamp: ${{ env.BUILD_DATE }}
     - name: docker logout
       if: ${{ always() }}
       uses: ./.github/actions/docker-logout
