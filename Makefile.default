@@ -5,6 +5,7 @@ all: clean build commit test
 
 build-default: clean
 	buildah --name $(image) from --pull-always docker.io/alpine
+	buildah config --created-by 'buildah' $(image)
 	buildah run $(image) /bin/sh <install.sh
 	buildah copy $(image) overlay/ /
 
