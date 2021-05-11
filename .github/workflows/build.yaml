@@ -1,6 +1,6 @@
 name: build
 on:
-  # schedule: [ cron: "42 13 23 * *" ]
+  schedule: [ cron: "42 13 23 * *" ]
   push:
   workflow_dispatch:
 
