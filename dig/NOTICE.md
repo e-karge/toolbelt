@@ -1,9 +1,8 @@
 This docker image includes
 
-[dig](http://ftp.isc.org/isc/bind9/cur/9.10/doc/arm/man.dig.html)
-– Copyright © 2004-2013 by Internet Systems Consortium, Inc. (“ISC”);
-Copyright © 1995-2003 by Internet Software Consortium, licensed under
-[ISC License](https://www.isc.org/downloads/software-support-policy/isc-license/)
+[dig](https://bind9.readthedocs.io/en/latest/manpages.html#dig-dns-lookup-utility)
+– Copyright © 1996-2021 by Internet Systems Consortium, Inc. ("ISC"), licensed under
+[Mozilla Public License, Version 2.0](https://gitlab.isc.org/isc-projects/bind9/-/blob/main/LICENSE)
 
 [Alpine Linux](http://www.alpinelinux.org/)
 – maintained by the Alpine Linux development team.
