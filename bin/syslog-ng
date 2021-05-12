@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e || exit
+set -o pipefail
+
+test -t 0 && tty=-ti || tty=-i
+exec docker run --rm \
+  --volume logs:/run/syslog \
+  --publish 514:514/udp \
+  --publish 601:601/tcp \
+  --volume "$PWD:/work" --workdir /work $tty \
+  toolbelt/syslog-ng "$@"

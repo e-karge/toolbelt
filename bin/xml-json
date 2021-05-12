@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e || exit
+set -o pipefail
+
+test -t 0 && tty=-ti || tty=-i
+exec docker run --rm \
+  --user "${UID:-0}" \
+  --volume "$PWD:/work" --workdir /work $tty \
+  toolbelt/xml-json "$@"
