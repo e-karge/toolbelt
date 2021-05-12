@@ -75,6 +75,11 @@ jobs:
       with:
         image: oathtool
         timestamp: ${{ env.BUILD_DATE }}
+    - name: podman
+      uses: ./.github/actions/build
+      with:
+        image: podman
+        timestamp: ${{ env.BUILD_DATE }}
     - name: socat
       uses: ./.github/actions/build
       with:
