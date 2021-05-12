@@ -1,7 +1,7 @@
 This docker image includes
 
-[oathtool](http://www.nongnu.org/oath-toolkit/oathtool.1.html)
-– Copyright © 2015 Simon Josefsson, licensed under
+[oathtool](https://gitlab.com/oath-toolkit/oath-toolkit)
+– Copyright © 2009-2020 Simon Josefsson, licensed under
 [GNU GPL v3 or later](http://gnu.org/licenses/gpl.html)
 
 [Alpine Linux](http://www.alpinelinux.org/)
