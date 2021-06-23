@@ -1,2 +1,2 @@
-apk --no-cache add nodejs-npm
+apk --no-cache add npm
 npm install xml-json -g
