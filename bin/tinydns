@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e || exit
+set -o pipefail
+
+test -t 0 && tty=-ti || tty=-i
+
+if [ ${1:+set} ]; then
+  exec docker run --rm \
+    --user "${UID:-0}" \
+    --volume "$PWD:/run/tinydns" --workdir /run/tinydns $tty \
+    --entrypoint "/usr/bin/tinydns-$1" \
+    toolbelt/tinydns "${@:2}"
+else
+  exec docker run --rm \
+    --volume "$PWD:/run/tinydns" --workdir /run/tinydns $tty \
+    --publish 53:53/tcp \
+    --publish 53:53/udp \
+    toolbelt/tinydns
+fi

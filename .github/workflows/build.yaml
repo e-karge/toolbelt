@@ -95,6 +95,11 @@ jobs:
       with:
         image: tinyproxy
         timestamp: ${{ env.BUILD_DATE }}
+    - name: tinydns
+      uses: ./.github/actions/build
+      with:
+        image: tinydns
+        timestamp: ${{ env.BUILD_DATE }}
     - name: xml-json
       uses: ./.github/actions/build
       with:
