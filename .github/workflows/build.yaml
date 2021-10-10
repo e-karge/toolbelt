@@ -55,6 +55,11 @@ jobs:
       with:
         image: jq
         timestamp: ${{ env.BUILD_DATE }}
+    - name: kubectl
+      uses: ./.github/actions/build
+      with:
+        image: kubectl
+        timestamp: ${{ env.BUILD_DATE }}
     - name: mustache
       uses: ./.github/actions/build
       with:

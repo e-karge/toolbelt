@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e || exit
+set -o pipefail
+
+test -t 0 && tty=-ti || tty=-i
+exec docker run --rm \
+  --user "${UID:-k8s}" \
+  --env "HOME=/k8s" \
+  --volume "$HOME/.kube:/k8s/.kube" \
+  --volume "$PWD:/work" --workdir /work \
+  $tty toolbelt/kubectl "$@"

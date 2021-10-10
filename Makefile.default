@@ -6,7 +6,7 @@ all: clean build commit test
 build-default: clean
 	buildah --name $(image) from --pull-always docker.io/alpine
 	buildah config --created-by 'buildah' $(image)
-	buildah run $(image) /bin/sh <install.sh
+	buildah run $(image) /bin/sh -e <install.sh
 	if [ -d overlay ]; then buildah copy $(image) overlay/ /; fi
 
 commit:
