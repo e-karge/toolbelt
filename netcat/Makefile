@@ -1,8 +1,8 @@
 image=toolbelt/netcat
 include ../Makefile.default
 
-build: build-default
-	buildah config --user operator --cmd '[]' --entrypoint '[ "/usr/bin/nc" ]' $(image)
+$(ARCH:%=build-%): build-%: build-default-%
+	buildah config --user operator --cmd '[]' --entrypoint '[ "/usr/bin/nc" ]' $(image):$*
 
-test:
-	echo fire and forget | podman run --rm --pull never -i localhost/$(image):$(tag) -u ::1 12345
+$(ARCH:%=test-%): test-%:
+	echo fire and forget | podman run --arch $* --rm --pull never -i $(image):$* -u ::1 12345

@@ -1,6 +1,5 @@
-echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
-echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-apk add --no-cache podman@testing
+echo @edge https://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+apk add --no-cache podman@edge
 
 adduser -h /podman -g 'run it!' -s /bin/nologin -k /var/empty podman -D
 

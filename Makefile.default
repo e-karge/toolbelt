@@ -1,26 +1,35 @@
 REGISTRY?=localhost:5000
+ARCH=amd64 arm64
 tag=latest
 
 all: clean build commit test
+build: $(ARCH:%=build-%)
+test: $(ARCH:%=test-%)
 
-build-default: clean
-	buildah --name $(image) from --pull-always docker.io/alpine
-	buildah config --created-by 'buildah' $(image)
-	buildah run $(image) /bin/sh -e <install.sh
-	if [ -d overlay ]; then buildah copy $(image) overlay/ /; fi
+manifest:
+	buildah manifest create $(image)
 
-commit:
-	buildah commit --rm $(image) $(image):latest
+build-default: clean manifest $(ARCH:%=build-default-%)
+$(ARCH:%=build-default-%):
+	buildah --arch $(@:build-default-%=%) --name $(image):$(@:build-default-%=%) from --pull-always docker.io/alpine
+	buildah config --created-by 'buildah' $(image):$(@:build-default-%=%)
+	if [ -f install.sh ]; then buildah run $(image):$(@:build-default-%=%) /bin/sh -e <install.sh; fi
+	if [ -d overlay ]; then buildah copy $(image):$(@:build-default-%=%) overlay/ /; fi
+
+commit: $(ARCH:%=commit-%)
+$(ARCH:%=commit-%):
+	buildah commit --manifest $(image) --rm $(image):$(@:commit-%=%) $(image):$(@:commit-%=%)
 
 push:
-	buildah push --format v2s2 $(image):latest "$(REGISTRY)/$(image):$(tag)"
-	buildah tag $(image):latest "$(REGISTRY)/$(image):$(tag)"
+	buildah manifest push --all --format v2s2 $(image) "docker://$(REGISTRY)/$(image):$(tag)"
+	buildah tag $(image) "$(REGISTRY)/$(image):$(tag)"
 
 inspect:
 	buildah inspect $(image)
 
 clean:
-	-buildah rm $(image)
-	-buildah rmi $(image)
+	-buildah manifest rm $(image)
+	-buildah rm $(ARCH:%=$(image):%)
+	-buildah rmi $(ARCH:%=$(image):%)
 
 .PHONY: build default-build test push inspect clean
