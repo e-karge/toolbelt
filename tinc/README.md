@@ -6,9 +6,9 @@
 
 
 tinc
-=========
+====
 
-Docker image for [tinc](https://www.tinc-vpn.org). To use run
+Docker image for [tinc](https://www.tinc-vpn.org), a minimalistic VPN implementation. To use run
 
 ```bash
 docker run --network host --device /dev/net/tun --cap-add CAP_NET_ADMIN --volume <tinc-config-dir>:/run/tinc --rm -ti toolbelt/tinc
