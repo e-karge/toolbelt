@@ -101,15 +101,20 @@ jobs:
       with:
         image: syslog-ng
         timestamp: ${{ env.BUILD_DATE }}
-    - name: tinyproxy
+    - name: tinc
       uses: ./.github/actions/build
       with:
-        image: tinyproxy
+        image: tinc
         timestamp: ${{ env.BUILD_DATE }}
     - name: tinydns
       uses: ./.github/actions/build
       with:
         image: tinydns
+        timestamp: ${{ env.BUILD_DATE }}
+    - name: tinyproxy
+      uses: ./.github/actions/build
+      with:
+        image: tinyproxy
         timestamp: ${{ env.BUILD_DATE }}
     - name: xml-json
       uses: ./.github/actions/build
