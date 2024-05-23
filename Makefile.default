@@ -13,6 +13,7 @@ build-default: clean manifest $(ARCH:%=build-default-%)
 $(ARCH:%=build-default-%):
 	buildah --arch $(@:build-default-%=%) --name $(image):$(@:build-default-%=%) from --pull-always docker.io/alpine
 	buildah config --created-by 'buildah' $(image):$(@:build-default-%=%)
+	buildah run $(image):$(@:build-default-%=%) adduser -h /root -g operator -s /sbin/nologin -D -H -u 11 -G root operator root
 	if [ -f install.sh ]; then buildah run $(image):$(@:build-default-%=%) /bin/sh -e <install.sh; fi
 	if [ -d overlay ]; then buildah copy $(image):$(@:build-default-%=%) overlay/ /; fi
 
