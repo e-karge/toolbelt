@@ -116,6 +116,11 @@ jobs:
       with:
         image: tinyproxy
         timestamp: ${{ env.BUILD_DATE }}
+    - name: uacme
+      uses: ./.github/actions/build
+      with:
+        image: uacme
+        timestamp: ${{ env.BUILD_DATE }}
     - name: xml-json
       uses: ./.github/actions/build
       with:
