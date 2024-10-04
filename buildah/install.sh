@@ -1,6 +1,6 @@
 echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 echo @testing https://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-apk add --no-cache buildah@testing crun
+apk add --no-cache buildah netavark crun
 
 adduser -h /buildah -g 'build it!' -s /bin/nologin -k /var/empty buildah -D
 
