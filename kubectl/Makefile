@@ -1,4 +1,5 @@
 image=toolbelt/kubectl
+alpine-tag=edge
 include ../Makefile.default
 
 $(ARCH:%=build-%): build-%: build-default-%
