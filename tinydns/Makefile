@@ -2,7 +2,7 @@ image=toolbelt/tinydns
 include ../Makefile.default
 
 $(ARCH:%=build-%): build-%: build-default-%
-	buildah config --port 8888 --volume /run/tinydns --entrypoint '[ "/usr/bin/tinydns" ]' --cmd '[]' --env "IP=0.0.0.0" --env "UID=53" --env "GID=53" --env ROOT=/run/tinydns $(image):$*
+	buildah config --port 8888 --volume /run/tinydns --entrypoint '[ "/usr/bin/tinydns" ]' --env "IP=0.0.0.0" --env "UID=53" --env "GID=53" --env ROOT=/run/tinydns $(image):$*
 
 $(ARCH:%=test-%): test-%:
 	$(eval POD=$(shell podman pod create))

@@ -2,7 +2,7 @@ image=toolbelt/amqp
 include ../Makefile.default
 
 $(ARCH:%=build-%): build-%: build-default-%
-	buildah config --user operator --cmd '[]' --entrypoint '[ "/usr/bin/amqp" ]' $(image):$*
+	buildah config --user operator --entrypoint '[ "/usr/bin/amqp" ]' $(image):$*
 
 $(ARCH:%=test-%): test-%:
 	test "`podman run --arch $* --rm --pull never localhost/$(image):$*`" = "`printf 'amqp consume\namqp declare-queue\namqp delete-queue\namqp get\namqp publish\n'`"
