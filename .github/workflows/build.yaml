@@ -51,6 +51,11 @@ jobs:
       with:
         image: dig
         timestamp: ${{ env.BUILD_DATE }}
+    - name: dnsmasq
+      uses: ./.github/actions/build
+      with:
+        image: dnsmasq
+        timestamp: ${{ env.BUILD_DATE }}
     - name: drill
       uses: ./.github/actions/build
       with:
