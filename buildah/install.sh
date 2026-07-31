@@ -10,3 +10,6 @@ install -o buildah -g buildah -m 00700 -d /buildah/.local
 install -o buildah -g buildah -m 00700 -d /buildah/.local/share
 install -o buildah -g buildah -m 00700 -d /buildah/.local/share/containers
 ln -s .local/share/containers /buildah/
+
+chmod +s /usr/bin/newuidmap
+chmod +s /usr/bin/newgidmap
