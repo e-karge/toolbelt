@@ -46,6 +46,11 @@ jobs:
       with:
         image: curl
         timestamp: ${{ env.BUILD_DATE }}
+    - name: darkhttpd
+      uses: ./.github/actions/build
+      with:
+        image: darkhttpd
+        timestamp: ${{ env.BUILD_DATE }}
     - name: dig
       uses: ./.github/actions/build
       with:
